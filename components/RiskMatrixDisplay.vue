@@ -76,7 +76,6 @@ const getRiskLabel = (likelihoodLevel, severityLevel) => {
   border: 1px solid #e2e8f0;
 }
 .risk-matrix-grid {
-  /* Nuxt allows v-bind in style block, so this works */
   --grid-columns-count: v-bind(severities.length);
   --grid-rows-count: v-bind(likelihoods.length);
   display: grid;
