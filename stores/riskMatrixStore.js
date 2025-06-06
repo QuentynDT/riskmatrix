@@ -1,19 +1,19 @@
 import { defineStore } from 'pinia';
 
 const defaultLikelihoods = [
-  { level: 15, label: 'Very Unlikely' },
-  { level: 20, label: 'Unlikely' },
-  { level: 25, label: 'Possible' },
-  { level: 30, label: 'Likely' },
-  { level: 35, label: 'Very Likely' },
+  { level: 10, label: 'Very Unlikely' },
+  { level: 15, label: 'Unlikely' },
+  { level: 20, label: 'Possible' },
+  { level: 25, label: 'Likely' },
+  { level: 30, label: 'Very Likely' },
 ];
 
 const defaultSeverities = [
-  { level: 15, label: 'Insignificant' },
-  { level: 20, label: 'Minor' },
-  { level: 25, label: 'Moderate' },
-  { level: 30, label: 'Major' },
-  { level: 35, label: 'Catastrophic' },
+  { level: 10, label: 'Insignificant' },
+  { level: 15, label: 'Minor' },
+  { level: 20, label: 'Moderate' },
+  { level: 25, label: 'Major' },
+  { level: 30, label: 'Catastrophic' },
 ];
 
 export const useRiskMatrixStore = defineStore('riskMatrix', {

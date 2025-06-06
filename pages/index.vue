@@ -44,11 +44,11 @@
   padding: 1.5rem 2rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: #000;
   border: none;
   border-radius: 0.75rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 

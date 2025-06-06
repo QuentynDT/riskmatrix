@@ -60,14 +60,14 @@ const handleAddLikelihood = () => {
   margin-top: 2.5rem;
   width: 100%;
   max-width: 42rem;
-  background-color: white;
+  background-color: #ccccff;
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
 }
 .custom-inputs-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #4b5563;
@@ -89,7 +89,7 @@ const handleAddLikelihood = () => {
   border: 1px solid #cbd5e0;
   border-radius: 0.375rem;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.1s;
 }
 .text-input:focus {
   outline: none;
@@ -158,7 +158,7 @@ const handleAddLikelihood = () => {
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: bold;
-  transition: background-color 0.2s;
+  transition: background-color 0.1s;
   flex-shrink: 0;
 }
 .remove-button:hover {

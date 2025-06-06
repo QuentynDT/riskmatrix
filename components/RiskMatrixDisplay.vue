@@ -42,11 +42,11 @@ const calculateRiskLevel = (likelihoodLevel, severityLevel) => {
 
 const getRiskClass = (likelihoodLevel, severityLevel) => {
   const risk = calculateRiskLevel(likelihoodLevel, severityLevel);
-  if (risk <= 400) {
+  if (risk <= 225) {
     return 'low-risk';
-  } else if (risk <= 625) {
+  } else if (risk <= 400) {
     return 'medium-risk';
-  } else if (risk <= 900) {
+  } else if (risk <= 625) {
     return 'high-risk';
   } else {
     return 'extreme-risk';
@@ -55,11 +55,11 @@ const getRiskClass = (likelihoodLevel, severityLevel) => {
 
 const getRiskLabel = (likelihoodLevel, severityLevel) => {
   const risk = calculateRiskLevel(likelihoodLevel, severityLevel);
-  if (risk <= 400) {
+  if (risk <= 225) {
     return 'Low';
-  } else if (risk <= 625) {
+  } else if (risk <= 400) {
     return 'Medium';
-  } else if (risk <= 900) {
+  } else if (risk <= 625) {
     return 'High';
   } else {
     return 'Extreme';
@@ -112,9 +112,8 @@ const getRiskLabel = (likelihoodLevel, severityLevel) => {
 }
 .risk-cell {
   padding: 0.75rem;
-  border-bottom: 1px solid #000000;
-  border-right: 1px solid #333;
-  border-left: 1px solid #e2e8f0;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
