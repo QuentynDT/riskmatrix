@@ -26,21 +26,6 @@
       </template>
     </div>
   </div>
-
-  <div class="explanation-card">
-    <h2 class="explanation-title">Understanding the Matrix:</h2>
-    <ul class="explanation-list">
-      <li>The matrix categorizes risks based on their <strong>Likelihood</strong> (how probable they are) and <strong>Severity</strong> (their impact if they occur).</li>
-      <li><strong>Likelihood</strong> increases as you go down the rows.</li>
-      <li><strong>Severity</strong> increases as you go right across the columns.</li>
-      <li>Color coding helps quickly identify risk levels:
-        <span class="color-dot low-risk"></span> Low,
-        <span class="color-dot medium-risk"></span> Medium,
-        <span class="color-dot high-risk"></span> High,
-        <span class="color-dot extreme-risk"></span> Extreme.
-      </li>
-    </ul>
-  </div>
 </template>
 
 <script setup>
@@ -91,6 +76,7 @@ const getRiskLabel = (likelihoodLevel, severityLevel) => {
   border: 1px solid #e2e8f0;
 }
 .risk-matrix-grid {
+  /* Nuxt allows v-bind in style block, so this works */
   --grid-columns-count: v-bind(severities.length);
   --grid-rows-count: v-bind(likelihoods.length);
   display: grid;
@@ -169,42 +155,6 @@ const getRiskLabel = (likelihoodLevel, severityLevel) => {
 .extreme-risk:hover {
   background-color: #b91c1c;
 }
-.explanation-card {
-  margin-top: 2.5rem;
-  width: 100%;
-  max-width: 42rem;
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
-}
-.explanation-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #4b5563;
-  text-align: center;
-}
-
-.explanation-list {
-  list-style: disc;
-  padding-left: 1.25rem;
-  color: #4b5563;
-  line-height: 1.5;
-}
-
-.explanation-list li {
-  margin-bottom: 0.5rem;
-}
-.color-dot {
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-}
 
 @media (max-width: 640px) {
   .risk-matrix-grid {
@@ -219,15 +169,6 @@ const getRiskLabel = (likelihoodLevel, severityLevel) => {
     font-size: 0.625rem;
     padding: 0.5rem;
     margin: 0.125rem;
-  }
-  .explanation-card {
-    padding: 1rem;
-  }
-  .explanation-title {
-    font-size: 1.25rem;
-  }
-  .explanation-list {
-    font-size: 0.875rem;
   }
 }
 </style>

@@ -9,14 +9,14 @@
       <label for="newLikelihoodLevel" class="input-label">Level:</label>
       <input type="number" id="newLikelihoodLevel" v-model.number="newLikelihood.level" placeholder="e.g., 0" class="text-input">
     </div>
-    <button @click="addLikelihood" class="add-button">Add Likelihood</button>
-    <button @click="resetLikelihoods" class="reset-button">Reset Likelihoods</button>
+    <button @click="handleAddLikelihood" class="add-button">Add Likelihood</button>
+    <button @click="emit('reset-likelihoods')" class="reset-button">Reset Likelihoods</button>
     <div class="current-list-container">
       <h3>Current Likelihoods:</h3>
       <ul>
-        <li v-for="(likelihood, index) in likelihoods" :key="index">
+        <li v-for="(likelihood, index) in likelihoods" :key="likelihood.level || index">
           {{ likelihood.label }} (Level: {{ likelihood.level }})
-          <button @click="removeLikelihood(index)" class="remove-button">x</button>
+          <button @click="emit('remove-likelihood', index)" class="remove-button">x</button>
         </li>
       </ul>
     </div>
@@ -32,14 +32,14 @@
       <label for="newSeverityLevel" class="input-label">Level:</label>
       <input type="number" id="newSeverityLevel" v-model.number="newSeverity.level" placeholder="e.g., 0" class="text-input">
     </div>
-    <button @click="addSeverity" class="add-button">Add Severity</button>
-    <button @click="resetSeverities" class="reset-button">Reset Severities</button>
+    <button @click="handleAddSeverity" class="add-button">Add Severity</button>
+    <button @click="emit('reset-severities')" class="reset-button">Reset Severities</button>
     <div class="current-list-container">
       <h3>Current Severities:</h3>
       <ul>
-        <li v-for="(severity, index) in severities" :key="index">
+        <li v-for="(severity, index) in severities" :key="severity.level || index">
           {{ severity.label }} (Level: {{ severity.level }})
-          <button @click="removeSeverity(index)" class="remove-button">x</button>
+          <button @click="emit('remove-severity', index)" class="remove-button">x</button>
         </li>
       </ul>
     </div>
@@ -53,8 +53,14 @@ const props = defineProps({
   likelihoods: Array,
   severities: Array
 });
-
-const emit = defineEmits(['update:likelihoods', 'update:severities']);
+const emit = defineEmits([
+  'add-likelihood',
+  'remove-likelihood',
+  'reset-likelihoods',
+  'add-severity',
+  'remove-severity',
+  'reset-severities'
+]);
 
 const newLikelihood = ref({
   label: '',
@@ -65,16 +71,9 @@ const newSeverity = ref({
   level: null,
 });
 
-const addLikelihood = () => {
+const handleAddLikelihood = () => {
   if (newLikelihood.value.label && newLikelihood.value.level !== null && newLikelihood.value.level >= 0) {
-    const levelExists = props.likelihoods.some(l => l.level === newLikelihood.value.level);
-    if (levelExists) {
-      alert('A likelihood with this level already exists. Please use a unique level.');
-      return;
-    }
-    const updatedLikelihoods = [...props.likelihoods, { label: newLikelihood.value.label, level: newLikelihood.value.level }];
-    updatedLikelihoods.sort((a, b) => a.level - b.level);
-    emit('update:likelihoods', updatedLikelihoods);
+    emit('add-likelihood', { label: newLikelihood.value.label, level: newLikelihood.value.level });
     newLikelihood.value.label = '';
     newLikelihood.value.level = null;
   } else {
@@ -82,53 +81,14 @@ const addLikelihood = () => {
   }
 };
 
-const removeLikelihood = (index) => {
-  const updatedLikelihoods = props.likelihoods.filter((_, i) => i !== index);
-  emit('update:likelihoods', updatedLikelihoods);
-};
-
-const resetLikelihoods = () => {
-  const defaultLikelihoods = [
-    { level: 15, label: 'Very Unlikely' },
-    { level: 20, label: 'Unlikely' },
-    { level: 25, label: 'Possible' },
-    { level: 30, label: 'Likely' },
-    { level: 35, label: 'Very Likely' },
-  ];
-  emit('update:likelihoods', [...defaultLikelihoods]);
-};
-
-const addSeverity = () => {
+const handleAddSeverity = () => {
   if (newSeverity.value.label && newSeverity.value.level !== null && newSeverity.value.level >= 0) {
-    const levelExists = props.severities.some(s => s.level === newSeverity.value.level);
-    if (levelExists) {
-      alert('A severity with this level already exists. Please use a unique level.');
-      return;
-    }
-    const updatedSeverities = [...props.severities, { label: newSeverity.value.label, level: newSeverity.value.level }];
-    updatedSeverities.sort((a, b) => a.level - b.level);
-    emit('update:severities', updatedSeverities);
+    emit('add-severity', { label: newSeverity.value.label, level: newSeverity.value.level });
     newSeverity.value.label = '';
     newSeverity.value.level = null;
   } else {
     alert('Please enter a valid label and a non-negative level for the new severity.');
   }
-};
-
-const removeSeverity = (index) => {
-  const updatedSeverities = props.severities.filter((_, i) => i !== index);
-  emit('update:severities', updatedSeverities);
-};
-
-const resetSeverities = () => {
-  const defaultSeverities = [
-    { level: 15, label: 'Insignificant' },
-    { level: 20, label: 'Minor' },
-    { level: 25, label: 'Moderate' },
-    { level: 30, label: 'Major' },
-    { level: 35, label: 'Catastrophic' },
-  ];
-  emit('update:severities', [...defaultSeverities]);
 };
 </script>
 

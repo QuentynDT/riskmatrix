@@ -13,5 +13,9 @@
     "nuxt": "^3.12.2",
     "vue": "^3.4.29",
     "vue-router": "^4.5.1"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.11.1",
+    "pinia": "^3.0.3"
   }
 }
