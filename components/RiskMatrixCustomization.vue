@@ -15,8 +15,8 @@
       <h3>Current Likelihoods:</h3>
       <ul>
         <li v-for="(likelihood, index) in likelihoods" :key="likelihood.level || index">
-          {{ likelihood.label }} (Level: {{ likelihood.level }})
-          <button @click="emit('remove-likelihood', index)" class="remove-button">x</button>
+          {{ likelihood.label }} ({{ likelihood.level }})
+          <button @click="emit('remove-likelihood', index)" class="remove-button">X</button>
         </li>
       </ul>
     </div>
@@ -38,7 +38,7 @@
       <h3>Current Severities:</h3>
       <ul>
         <li v-for="(severity, index) in severities" :key="severity.level || index">
-          {{ severity.label }} (Level: {{ severity.level }})
+          {{ severity.label }} ({{ severity.level }})
           <button @click="emit('remove-severity', index)" class="remove-button">x</button>
         </li>
       </ul>
